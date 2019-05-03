@@ -8,7 +8,7 @@ type Exp =
     Var of Id
   | ILit of int
   | BLit of bool
-  | BinOp of BinOp
+  | BinOp of BinOp * Exp * Exp
   | IfExp of Exp * Exp * Exp
 
 type Prog =

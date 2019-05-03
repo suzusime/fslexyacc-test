@@ -1,16 +1,13 @@
 {
-module Lexer
-
 open FSharp.Text.Lexing
 open System
 
 let reserverWords = [
-  ("else", Parser.ELSE);
-  ("false", Parser.FALSE);
-  ("if", Parser.IF);
-  ("then", Parser.THEN);
-  ("true", Parser.TRUE);
-]
+  ("else", Parser.ELSE)
+  ("false", Parser.FALSE)
+  ("if", Parser.IF)
+  ("then", Parser.THEN)
+  ("true", Parser.TRUE) ]
 
 let lexeme = LexBuffer<_>.LexemeString
 }
@@ -26,12 +23,12 @@ rule main = parse
 | "<" { Parser.LT }
 | ['a'-'z'] ['a'-'z' '0'-'9' '_' ''']*
   {
-    let id = lexme lexbuf
+    let id = lexeme lexbuf
     let f x =
-      let (key, val) = x
-      key == id
+      let (k, v) = x
+      k = id
     match List.tryFind f reserverWords with
-    | Some (key, val) -> val
+    | Some (k, v) -> v
     | None -> Parser.ID id
   }
 | eof { exit 0 }
