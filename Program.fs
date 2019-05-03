@@ -16,7 +16,13 @@ let rec readEvalPrint env =
     printfn ""
     readEvalPrint newenv
 
+let initialEnv =
+    Environment.empty
+    |> Environment.extend "i" (IntV 1)
+    |> Environment.extend "v" (IntV 5)
+    |> Environment.extend "x" (IntV 10)
+
 [<EntryPoint>]
 let main argv =
-    printfn "Hello World from F#!"
+    readEvalPrint initialEnv
     0 // return an integer exit code
