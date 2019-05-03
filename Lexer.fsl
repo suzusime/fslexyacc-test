@@ -13,7 +13,7 @@ let lexeme = LexBuffer<_>.LexemeString
 }
 
 rule main = parse
-  [' ' '\n']+ { main lexbuf }
+  [' ' '\r' '\n']+ { main lexbuf }
 | "-"? ['0'-'9']+ { Parser.INTV (int (lexeme lexbuf)) }
 | "(" { Parser.LPAREN }
 | ")" { Parser.RPAREN }
